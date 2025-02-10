@@ -28,9 +28,9 @@ This repository contains Python scripts demonstrating the implementation of Newt
 - **Example4MechNewton.py**
 
   - Applies Newton's method to a nonlinear mechanical equation related to material behavior under stress:
-    $$
+    \[
     f(e) = \sigma - E(1 + \alpha e)e
-    $$
+    \]
   - Uses predefined material constants (Young’s modulus, applied stress, and material constant).
   - Initial guess: \(e_0 = 0\).
 
