@@ -10,4 +10,4 @@ x0 = 3
 
 # Impliment Newton Method
 x = newton_method(f, derivative_of_f, x0, tolerance=1e-6, max_iter=100)
-print("x =", x)
+print( "x =", x )
