@@ -8,7 +8,7 @@ behavior of each model under different loading conditions.
 """
 
 import numpy as np
-from MaterialModel import IsotropicHardeningModel, KinematicHardeningModel
+from test_MaterialModel import IsotropicHardeningModel, KinematicHardeningModel
 
 def run_isotropic_example(sig_0, ep_0, E, H, Y_0, de, n):
     """Runs an example using the isotropic hardening model."""
