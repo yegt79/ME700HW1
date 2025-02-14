@@ -1,9 +1,5 @@
 name: tests
 
-# reference:
-# https://github.com/pybind/python_example/blob/master/.github/workflows/pip.yml
-
-# on: [push]
 on:
   push:
     paths:
@@ -29,19 +25,22 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -e .
-        pip install pytest-cov  # Add this line to install pytest-cov
+        pip install pytest-cov
     - name: Test with pytest
       run: |
         pytest -v
     - name: Generate coverage report
       run: |
-        pytest --cov=tests/test_MaterialModel.py --cov-report=xml
+        pytest --cov=tests --cov-report=xml:coverage.xml  # Save coverage.xml in the root directory
+    - name: Check generated files
+      run: |
+        ls -l  # List files in the working directory to check if coverage.xml is generated
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
-        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+        token: ${{ secrets.CODECOV_TOKEN }}
         files: ./coverage.xml
-        flags: unittests # optional
-        name: codecov-umbrella # optional
-        fail_ci_if_error: true # optional (default = false)
-        verbose: true # optional (default = false)
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: true
+        verbose: true
