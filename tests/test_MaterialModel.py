@@ -19,7 +19,7 @@ class IsotropicHardeningModel:
         sig[0] = self.sig_0
         ep[0] = self.ep_0
 
-        for i in range(self.n - 1):
+        for i in range(1, self.n - 1):
             Y[i] = self.Y_0 + self.H * ep[i]  # Update yield stress
             sig_trial = sig[i] + self.E * de  # Elastic trial stress
             phi_trial = abs(sig_trial) - self.Y_0  # Corrected yield condition
@@ -54,7 +54,7 @@ class KinematicHardeningModel:
         ep[0] = self.ep_0
         alpha[0] = 0  # Initial backstress is 0
 
-        for i in range(self.n - 1):
+        for i in range(1, self.n - 1):
             # Trial state
             sig_trial = sig[i] + self.E * de  # Elastic trial stress
             alpha_trial = alpha[i]  # Backstress remains the same for trial
