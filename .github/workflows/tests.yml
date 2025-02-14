@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     strategy:
+      max-parallel: 2
       matrix:
         platform: [macos-latest, ubuntu-latest, windows-latest]
         python-version: [3.9.13]
@@ -26,14 +27,14 @@ jobs:
         pip install -e .
     - name: Test with pytest
       run: |
-        pytest test_MaterialModel.py -v  # Add this line here to specify the test file
+        pytest ME700HW1/tests/ -v
     - name: Generate coverage report
       run: |
-        pytest --cov=test_MaterialModel --cov-report=xml
+        pytest --cov=ME700HW1 --cov-report=xml
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
-        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+        token: ${{ secrets.CODECOV_TOKEN }}
         files: ./coverage.xml
         flags: unittests
         name: codecov-umbrella
