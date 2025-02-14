@@ -1,6 +1,7 @@
 import numpy as np
 import pytest
 
+
 class IsotropicHardeningModel:
     def __init__(self, sig_0, ep_0, E, H, Y_0, n=100):
         self.sig_0 = sig_0
