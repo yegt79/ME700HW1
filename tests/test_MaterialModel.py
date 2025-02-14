@@ -15,6 +15,7 @@ class IsotropicHardeningModel:
         ep = np.zeros(self.n)
         Y = np.zeros(self.n)
 
+        Y[0] = self.Y_0
         sig[0] = self.sig_0
         ep[0] = self.ep_0
 
