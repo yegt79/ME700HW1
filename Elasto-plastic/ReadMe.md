@@ -80,3 +80,6 @@ print("Final Plastic Strain:", ep[-1])
 
 ## **Contributing**  
 Feel free to modify and improve the models. Pull requests are welcome.  
+Acknowledgment
+
+This project was developed with the assistance of ChatGPT for writing, debugging, and refining the code, as well as answering questions throughout the process.
