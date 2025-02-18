@@ -26,14 +26,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest pytest-cov numpy
 
-      # Set the PYTHONPATH so pytest can find the 'src' directory
-      - name: Set PYTHONPATH
-        run: echo "PYTHONPATH=src" >> $GITHUB_ENV
-
       # Run tests and generate coverage report
       - name: Run tests and generate coverage report
         run: |
-          pytest --cov=tests --cov-report=xml:coverage.xml -v
+          PYTHONPATH=src pytest --cov=tests --cov-report=xml:coverage.xml -v
 
       # Verify that coverage.xml exists
       - name: Verify coverage.xml exists
