@@ -29,12 +29,12 @@ jobs:
       # Run tests and generate coverage report
       - name: Run tests and generate coverage report
         run: |
-          PYTHONPATH=src pytest --cov=tests --cov-report=xml:coverage.xml -v
+          PYTHONPATH=src pytest --cov=src --cov=tests --cov-report=xml:coverage.xml --cov-report=term-missing -v
 
       # Verify that coverage.xml exists
       - name: Verify coverage.xml exists
         run: |
-          if [ -f "./coverage.xml" ]; then echo "coverage.xml exists"; else echo "coverage.xml not found"; fi
+          if [ -f "./coverage.xml" ]; then echo "coverage.xml exists"; else echo "coverage.xml not found"; exit 1; fi
 
       # List generated files to ensure the file is in the right place
       - name: List generated files
