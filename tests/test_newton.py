@@ -1,57 +1,28 @@
-import numpy as np
 import pytest
-from src.newton.newton_functions import derivative_of_f, newton_method
+from newton import newton_functions as nf
+import numpy as np
 
 
-# Test for derivative_of_f function
-def test_derivative_of_f_numpy():
-    """
-    Test the numerical derivative function for different functions.
-    """
-    threshold = 0.001
-
-    # Test 1: f(x) = x^2 - 4
-    def f(x):
-        return x**2 - 4
-    x_value = 2
-    f_prime = derivative_of_f(f, x_value)
-    assert np.isclose(f_prime, 4, atol=threshold)  # The derivative at x = 2 is 4
-
-    # Test 2: f(x) = sin(x)
-    def f(x):
-        return np.sin(x)
-    x_value = np.pi / 2
-    f_prime = derivative_of_f(f, x_value)
-    assert np.isclose(f_prime, 0, atol=threshold)  # The derivative of sin(x) at pi/2 is 0
-
-    # Test 3: f(x) = x^3
-    def f(x):
-        return x**3
-    x_value = 1
-    f_prime = derivative_of_f(f, x_value)
-    assert np.isclose(f_prime, 3, atol=threshold)  # The derivative of x^3 at x = 1 is 3
-
-    # Test 4: f(x) = e^x
-    def f(x):
-        return np.exp(x)
-    x_value = 0
-    f_prime = derivative_of_f(f, x_value)
-    assert np.isclose(f_prime, 1, atol=threshold)  # The derivative of e^x at x = 0 is 1
-
-    # Test 5: f(x) = cos(x)
-    def f(x):
-        return np.cos(x)
-    x_value = np.pi
-    f_prime = derivative_of_f(f, x_value)
-    assert np.isclose(f_prime, 0, atol=threshold)  # The derivative of cos(x) at x = pi is 0
+# Test the derivative_of_f function
+@pytest.mark.parametrize("func, x_value, expected_derivative", [
+    (lambda x: x**2 - 4, 2, 4),  # f(x) = x^2 - 4, derivative at x=2 is 4
+    (lambda x: np.sin(x), np.pi / 2, 0),  # f(x) = sin(x), derivative at x=pi/2 is 0
+    (lambda x: x**3, 1, 3),  # f(x) = x^3, derivative at x=1 is 3
+    (lambda x: np.exp(x), 0, 1),  # f(x) = e^x, derivative at x=0 is 1
+    (lambda x: np.cos(x), np.pi, 0),  # f(x) = cos(x), derivative at x=pi is 0
+])
+def test_derivative_of_f(func, x_value, expected_derivative):
+    result = nf.derivative_of_f(func, x_value)
+    assert np.isclose(result, expected_derivative, atol=1e-3)
 
 
-# Test for newton_method function
+# Test Newton's method
 def test_newton_method():
     """
     Test for Newton's method on the function f(x) = x^2 - 4.
     The root should be x = 2.
     """
+    
     # Define the function and its derivative
     def f(x):
         return x**2 - 4
@@ -63,7 +34,7 @@ def test_newton_method():
     x0 = 3.0
     
     # Apply Newton's method
-    root = newton_method(f, derivative_of_f, x0)
+    root = nf.newton_method(f, derivative_of_f, x0)
     
     # Test if the result is correct (root = 2)
-    assert np.isclose(root, 2)
+    assert np.isclose(root, 2, atol=1e-6)
