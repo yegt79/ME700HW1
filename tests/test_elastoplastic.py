@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from elasto-plastic import elasto-plastic_functions as ef
+from elastoplastic import elastoplastic_functions as ef
 
 
 class TestMaterialModels:
