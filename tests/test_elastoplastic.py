@@ -7,7 +7,7 @@ class TestMaterialModels:
     @staticmethod
     def test_isotropic_hardening():
         # Setup initial values
-        model = IsotropicHardeningModel(sig_0=10, ep_0=0.01, E=200000, H=1000, Y_0=250, n=100)
+        model = ef.IsotropicHardeningModel(sig_0=10, ep_0=0.01, E=200000, H=1000, Y_0=250, n=100)
         de = 0.001  # Strain increment
 
         # Call compute_stress method
@@ -26,7 +26,7 @@ class TestMaterialModels:
     @staticmethod
     def test_kinematic_hardening():
         # Setup initial values
-        model = KinematicHardeningModel(sig_0=10, ep_0=0.01, E=200000, H=1000, Y_0=250, n=100)
+        model = ef.KinematicHardeningModel(sig_0=10, ep_0=0.01, E=200000, H=1000, Y_0=250, n=100)
         de = 0.001  # Strain increment
 
         # Call compute_stress method
