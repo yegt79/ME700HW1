@@ -2,7 +2,6 @@ import pytest
 import numpy as np
 from bisection import bisection_functions as bf
 
-
 def test_sort_values():
     # Test 1: Positive and negative numbers
     a = 10
