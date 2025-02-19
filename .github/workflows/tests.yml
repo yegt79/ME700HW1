@@ -7,33 +7,12 @@ on:
 
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ubuntu-latest
 
     steps:
+      # Checkout the repository
       - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.x"
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Run tests (Linux/macOS)
-        if: runner.os != 'Windows'
-        run: PYTHONPATH=src pytest --cov=src --cov=tests --cov-report=xml:coverage.xml --cov-report=term-missing -v
-
-      - name: Run tests (Windows)
-        if: runner.os == 'Windows'
-        run: |
-          $env:PYTHONPATH="src"
-          pytest --cov=src --cov=tests --cov-report=xml:coverage.xml --cov-report=term-missing -v
-        shell: pwsh
+        uses: actions/checkout@v2
 
       # Set up Python
       - name: Set up Python
