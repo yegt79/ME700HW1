@@ -75,3 +75,34 @@ class KinematicHardeningModel:
 
         return sig, ep, alpha  # Return the stress, plastic strain, and backstress
 
+def run_isotropic_example(sig_0, ep_0, E, H, Y_0, strain_increments, n):
+    """Runs an example using the isotropic hardening model with multiple strain increments."""
+    model = IsotropicHardeningModel(sig_0, ep_0, E, H, Y_0, n)
+    sig_list = []
+    ep_list = []
+    Y_list = []
+    
+    for de in strain_increments:
+        sig, ep, Y = model.compute_stress(de)
+        sig_list.append(sig)
+        ep_list.append(ep)
+        Y_list.append(Y)
+        
+    return np.array(sig_list), np.array(ep_list), np.array(Y_list)
+
+def run_kinematic_example(sig_0, ep_0, E, H, Y_0, strain_increments, n):
+    """Runs an example using the kinematic hardening model with multiple strain increments."""
+    model = KinematicHardeningModel(sig_0, ep_0, E, H, Y_0, n)
+    sig_list = []
+    ep_list = []
+    alpha_list = []
+    
+    for de in strain_increments:
+        sig, ep, alpha = model.compute_stress(de)
+        sig_list.append(sig)
+        ep_list.append(ep)
+        alpha_list.append(alpha)
+        
+    return np.array(sig_list), np.array(ep_list), np.array(alpha_list)
+
+
