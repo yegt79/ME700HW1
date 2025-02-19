@@ -41,6 +41,25 @@ class TestMaterialModels:
         assert np.isclose(ep[0], 0.01)
         assert np.isclose(alpha[0], 0)
 
+    @staticmethod
+    def test_isotropic_hardening_invalid_parameters():
+        """Test invalid parameters for IsotropicHardeningModel"""
+    with pytest.raises(ValueError):
+        model = ef.IsotropicHardeningModel(sig_0=-10, ep_0=0.01, E=200000, H=1000, Y_0=250, n=100)
+        
+    with pytest.raises(ValueError):
+        model = ef.IsotropicHardeningModel(sig_0=10, ep_0=-0.01, E=200000, H=1000, Y_0=250, n=100)
+
+@staticmethod
+def test_kinematic_hardening_invalid_parameters():
+    """Test invalid parameters for KinematicHardeningModel"""
+    with pytest.raises(ValueError):
+        model = ef.KinematicHardeningModel(sig_0=-10, ep_0=0.01, E=200000, H=1000, Y_0=250, n=100)
+        
+    with pytest.raises(ValueError):
+        model = ef.KinematicHardeningModel(sig_0=10, ep_0=-0.01, E=200000, H=1000, Y_0=250, n=100)
+
+
 
 if __name__ == "__main__":
     result = pytest.main()  
