@@ -38,3 +38,11 @@ def test_newton_method():
     
     # Test if the result is correct (root = 2)
     assert np.isclose(root, 2, atol=1e-6)
+
+# Print if all tests pass
+def run_all_tests():
+    pytest.main()
+    print("All tests successful!")
+
+# Uncomment this line to run the tests and print the success message
+# run_all_tests()
