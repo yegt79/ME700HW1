@@ -45,4 +45,4 @@ def run_all_tests():
     print("All tests successful!")
 
 # Uncomment this line to run the tests and print the success message
-# run_all_tests()
+run_all_tests()
