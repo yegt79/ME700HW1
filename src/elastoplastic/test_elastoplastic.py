@@ -59,6 +59,55 @@ def test_kinematic_hardening_invalid_parameters():
     with pytest.raises(ValueError):
         model = ef.KinematicHardeningModel(sig_0=10, ep_0=-0.01, E=200000, H=1000, Y_0=250, n=100)
 
+@staticmethod
+def test_run_isotropic_example():
+    # Define input parameters
+    sig_0 = 10
+    ep_0 = 0.01
+    E = 200000
+    H = 1000
+    Y_0 = 250
+    n = 100
+    strain_increments = [0.001, -0.0005, 0.002]  # Example strain increments
+
+    # Call the function
+    sig_list, ep_list, Y_list = run_isotropic_example(sig_0, ep_0, E, H, Y_0, strain_increments, n)
+
+    # Check output shapes
+    assert sig_list.shape == (len(strain_increments), n)
+    assert ep_list.shape == (len(strain_increments), n)
+    assert Y_list.shape == (len(strain_increments), n)
+
+    # Check initial conditions (first value should match initial stress, etc.)
+    assert np.isclose(sig_list[0, 0], sig_0)
+    assert np.isclose(ep_list[0, 0], ep_0)
+    assert np.isclose(Y_list[0, 0], Y_0)
+
+
+@staticmethod
+def test_run_kinematic_example():
+    # Define input parameters
+    sig_0 = 10
+    ep_0 = 0.01
+    E = 200000
+    H = 1000
+    Y_0 = 250
+    n = 100
+    strain_increments = [0.001, -0.0005, 0.002]  # Example strain increments
+
+    # Call the function
+    sig_list, ep_list, alpha_list = run_kinematic_example(sig_0, ep_0, E, H, Y_0, strain_increments, n)
+
+    # Check output shapes
+    assert sig_list.shape == (len(strain_increments), n)
+    assert ep_list.shape == (len(strain_increments), n)
+    assert alpha_list.shape == (len(strain_increments), n)
+
+    # Check initial conditions (first value should match initial stress, etc.)
+    assert np.isclose(sig_list[0, 0], sig_0)
+    assert np.isclose(ep_list[0, 0], ep_0)
+    assert np.isclose(alpha_list[0, 0], 0)  # Assuming alpha starts at 0
+
 
 
 if __name__ == "__main__":
