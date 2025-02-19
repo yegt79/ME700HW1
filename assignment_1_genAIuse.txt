@@ -1,0 +1,8 @@
+I utilized ChatGPT for various tasks throughout this project, including:
+
+Setting up and understanding GitHub Actions for automation.
+Assisting with Linux and Python syntax to ensure proper code structure.
+Gaining a better understanding of class usage in object-oriented programming.
+Correcting errors in the .yml and .toml files to improve their functionality.
+Fixing issues in the code for enhanced accuracy and performance.
+Creating .md files and learning their syntax for effective documentation.
