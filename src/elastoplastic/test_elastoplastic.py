@@ -71,7 +71,7 @@ def test_run_isotropic_example():
     strain_increments = [0.001, -0.0005, 0.002]  # Example strain increments
 
     # Call the function
-    sig_list, ep_list, Y_list = run_isotropic_example(sig_0, ep_0, E, H, Y_0, strain_increments, n)
+    sig_list, ep_list, Y_list = ef.run_isotropic_example(sig_0, ep_0, E, H, Y_0, strain_increments, n)
 
     # Check output shapes
     assert sig_list.shape == (len(strain_increments), n)
@@ -96,7 +96,7 @@ def test_run_kinematic_example():
     strain_increments = [0.001, -0.0005, 0.002]  # Example strain increments
 
     # Call the function
-    sig_list, ep_list, alpha_list = run_kinematic_example(sig_0, ep_0, E, H, Y_0, strain_increments, n)
+    sig_list, ep_list, alpha_list = ef.run_kinematic_example(sig_0, ep_0, E, H, Y_0, strain_increments, n)
 
     # Check output shapes
     assert sig_list.shape == (len(strain_increments), n)
