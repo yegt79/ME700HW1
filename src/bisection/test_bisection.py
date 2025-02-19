@@ -2,6 +2,11 @@ import pytest
 import numpy as np
 import bisection_functions as bf
 
+# Hook to print a success message if all tests pass
+def pytest_sessionfinish(session, exitstatus):
+    if exitstatus == 0:  # Exit status 0 means all tests passed
+        print("\nAll tests successful!")
+
 def test_sort_values():
     # Test 1: Positive and negative numbers
     a = 10
