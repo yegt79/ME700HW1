@@ -1,10 +1,6 @@
 import numpy as np
-import sys
-import os
-
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from src.elastoplastic import elastoplastic_functions as ef
-
+import pytest
+import elastoplastic_functions as ef
 
 class TestMaterialModels:
     @staticmethod
