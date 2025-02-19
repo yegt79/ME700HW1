@@ -3,6 +3,8 @@ import pytest
 
 class IsotropicHardeningModel:
     def __init__(self, sig_0, ep_0, E, H, Y_0, n=100):
+        if sig_0 < 0 or ep_0 < 0 or E <= 0 or H <= 0 or Y_0 < 0:
+            raise ValueError("Invalid parameters: sig_0, ep_0, E, H, and Y_0 must be non-negative, and E, H must be positive.")
         self.sig_0 = sig_0
         self.ep_0 = ep_0
         self.E = E
@@ -37,6 +39,8 @@ class IsotropicHardeningModel:
 
 class KinematicHardeningModel:
     def __init__(self, sig_0, ep_0, E, H, Y_0, n=100):
+        if sig_0 < 0 or ep_0 < 0 or E <= 0 or H <= 0 or Y_0 < 0:
+            raise ValueError("Invalid parameters: sig_0, ep_0, E, H, and Y_0 must be non-negative, and E, H must be positive.")
         self.sig_0 = sig_0  # Initial stress
         self.ep_0 = ep_0    # Initial plastic strain
         self.E = E          # Elastic modulus
