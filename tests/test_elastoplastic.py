@@ -1,7 +1,12 @@
 import numpy as np
 import pytest
-from elastoplastic import elastoplastic_functions as ef
+import sys
+import os
 
+# Add the project root to the Python path
+sys.path.append(os.path.abspath(os.path.join('..')))
+
+from src.elastoplastic import elastoplastic_functions as ef
 
 class TestMaterialModels:
     @staticmethod
