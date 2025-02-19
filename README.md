@@ -1,4 +1,5 @@
-# Project Name
+
+# Assignment 1
 
 This repository contains several modules for different numerical methods. It is structured with the following folders:
 
@@ -18,45 +19,47 @@ To run the code, follow the steps below:
 
 ### 1. Set up the Environment
 
-Make sure you have Python installed. It's recommended to use a virtual environment for managing dependencies.
+Make sure you have **Anaconda** installed on your local machine.
+
+#### Creating and Activating the Virtual Environment
+
+1. Open a **Terminal** session.
+2. To create a virtual environment with conda, run:
+    ```bash
+    conda create --name setup-examples-env python=3.9.13
+    ```
+3. Activate the virtual environment:
+    ```bash
+    conda activate setup-examples-env
+    ```
+4. Check that the correct version of Python is running (should be 3.9.13):
+    ```bash
+    python --version
+    ```
+5. Update some base modules:
+    ```bash
+    pip install --upgrade pip setuptools wheel
+    ```
+
+Note: Once the virtual environment is created, you can activate it in the future with:
+```bash
+conda activate setup-examples-env
+```
 
 #### Installing Dependencies
 
-1. Clone the repository:
+1. Navigate to the project folder using the terminal:
     ```bash
-    git clone <repository_url>
     cd <repository_folder>
     ```
-
-2. Create a virtual environment (if you haven't already):
+2. Check that the `pyproject.toml` file is present in the current directory:
     ```bash
-    python -m venv venv
+    ls
     ```
-
-3. Activate the virtual environment:
-    - On Windows:
-      ```bash
-      venv\Scripts\activate
-      ```
-    - On macOS/Linux:
-      ```bash
-      source venv/bin/activate
-      ```
-
-4. Install the required packages using `pip`:
+3. Now, create an editable install of the project:
     ```bash
-    pip install -r requirements.txt
+    pip install -e .
     ```
-
-    If you do not have a `requirements.txt`, you can manually install the dependencies:
-    - To install **pytest**:
-      ```bash
-      pip install pytest
-      ```
-    - To install **numpy**:
-      ```bash
-      pip install numpy
-      ```
 
 #### Setting up Code Coverage (Optional)
 
@@ -68,3 +71,17 @@ Once the environment is set up, you can run the tests for each folder. For examp
 
 ```bash
 pytest bisection/tests
+```
+
+Repeat for the other folders (`newton`, `elastoplastic`, and `src`).
+
+### 3. Using the Tutorials
+
+You can explore the tutorials available in each folder to understand how to use the implemented methods. Each tutorial file provides an example of how to utilize the functions in the corresponding folder.
+
+### 4. Configuration Files
+
+- The `.toml` file is included for configuration purposes.
+- The `.yml` file is set up for code coverage and can be used with tools that support it.
+
+Feel free to contribute or open issues if you encounter any problems!
