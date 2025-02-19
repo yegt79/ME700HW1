@@ -1,134 +1,203 @@
-import numpy as np
-import bisection_functions as bf
-
-# Example 1
-
-def f1(x):
-    return x - 4
-
-a, b = bf.sort_values(9, -3)
-threshold = 0.01
-iteration = 0
-
-while True:
-    iteration += 1
-    if iteration > 200:
-        print("Breaking the loop after 200 iterations")
-        break
-    
-    c = bf.calculate_mean(a, b)
-    fa, fb, fc = f1(a), f1(b), f1(c)
-    print(f"a = {a}, b = {b}, c = {c}, f(a) = {fa}, f(b) = {fb}, f(c) = {fc}")
-    
-    if abs(fc) < threshold:
-        print(f"Root found at c = {c} with f(c) = {fc}")
-        break
-    
-    flag = bf.check_sign(fc, fa)
-    a, b = bf.reassign_ab(flag, a, b, c)
-
-# Example 2
-
-def f1(x):
-    return x**3 + 8
-
-a, b = bf.sort_values(11, -10)
-iteration = 0
-
-while True:
-    iteration += 1
-    if iteration > 200:
-        print("Breaking the loop after 200 iterations")
-        break
-    
-    c = bf.calculate_mean(a, b)
-    fa, fb, fc = f1(a), f1(b), f1(c)
-    print(f"a = {a}, b = {b}, c = {c}, f(a) = {fa}, f(b) = {fb}, f(c) = {fc}")
-    
-    if abs(fc) < threshold:
-        print(f"Root found at c = {c} with f(c) = {fc}")
-        break
-    
-    flag = bf.check_sign(fc, fa)
-    a, b = bf.reassign_ab(flag, a, b, c)
-
-# Example 3
-
-def f1(x):
-    return 10 * np.log10(x)
-
-a, b = bf.sort_values(0, 60)
-iteration = 0
-
-while True:
-    iteration += 1
-    if iteration > 200:
-        print("Breaking the loop after 200 iterations")
-        break
-    
-    c = bf.calculate_mean(a, b)
-    fa, fb, fc = f1(a), f1(b), f1(c)
-    print(f"a = {a}, b = {b}, c = {c}, f(a) = {fa}, f(b) = {fb}, f(c) = {fc}")
-    
-    if abs(fc) < threshold:
-        print(f"Root found at c = {c} with f(c) = {fc}")
-        break
-    
-    flag = bf.check_sign(fc, fa)
-    a, b = bf.reassign_ab(flag, a, b, c)
-
-# Example 4
-
-def f1(e):
-    return sigma - E * (1 + alpha * e) * e
-
-E = 2e11
-alpha = 0.01
-sigma = 50000
-a, b = bf.sort_values(7, 0)
-iteration = 0
-
-while True:
-    iteration += 1
-    if iteration > 200:
-        print("Breaking the loop after 200 iterations")
-        break
-    
-    c = bf.calculate_mean(a, b)
-    fa, fb, fc = f1(a), f1(b), f1(c)
-    print(f"a = {a}, b = {b}, c = {c}, f(a) = {fa}, f(b) = {fb}, f(c) = {fc}")
-    
-    if abs(fc) < threshold:
-        print(f"Root found at c = {c} with f(c) = {fc}")
-        break
-    
-    flag = bf.check_sign(fc, fa)
-    a, b = bf.reassign_ab(flag, a, b, c)
-
-# Example 5
-
-def f1(v):
-    return C - P * v**n
-
-P = 50000
-C = 200000
-n = 1.4
-a, b = bf.sort_values(0, 5)
-iteration = 0
-
-while True:
-    iteration += 1
-    if iteration > 200:
-        print("Breaking the loop after 200 iterations")
-        break
-    
-    c = bf.calculate_mean(a, b)
-    fa, fb, fc = f1(a), f1(b), f1(c)
-    print(f"a = {a}, b = {b}, c = {c}, f(a) = {fa}, f(b) = {fb}, f(c) = {fc}")
-    
-    if abs(fc) < threshold:
-        print(f"Root found at c = {c} with f(c) = {fc}")
-        break
-    
-    flag = bf.check_sign(fc, fa)
-    a, b = bf.reassign_ab(flag, a, b, c)
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Bisection Method Examples\n",
+    "\n",
+    "This notebook demonstrates the use of the bisection method to find roots of several functions. The following examples are included:\n",
+    "- Example 1: Root of \( x - 4 \)\n",
+    "- Example 2: Root of \( x^3 + 8 \)\n",
+    "- Example 3: Root of \( 10 \cdot \log_{10}(x) \)\n",
+    "- Example 4: Root of nonlinear equation involving strain\n",
+    "- Example 5: Root of a power-law equation\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import numpy as np\n",
+    "import bisection_functions as bf\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Example 1 - Solving for root of x - 4\n",
+    "def f1(x):\n",
+    "    return x - 4\n",
+    "\n",
+    "a, b = bf.sort_values(9, -3)\n",
+    "threshold = 0.01\n",
+    "iteration = 0\n",
+    "\n",
+    "while True:\n",
+    "    iteration += 1\n",
+    "    if iteration > 200:\n",
+    "        print('Breaking the loop after 200 iterations')\n",
+    "        break\n",
+    "    \n",
+    "    c = bf.calculate_mean(a, b)\n",
+    "    fa, fb, fc = f1(a), f1(b), f1(c)\n",
+    "    print(f'a = {a}, b = {b}, c = {c}, f(a) = {fa}, f(b) = {fb}, f(c) = {fc}')\n",
+    "    \n",
+    "    if abs(fc) < threshold:\n",
+    "        print(f'Root found at c = {c} with f(c) = {fc}')\n",
+    "        break\n",
+    "    \n",
+    "    flag = bf.check_sign(fc, fa)\n",
+    "    a, b = bf.reassign_ab(flag, a, b, c)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Example 2 - Solving for root of x^3 + 8\n",
+    "def f1(x):\n",
+    "    return x**3 + 8\n",
+    "\n",
+    "a, b = bf.sort_values(11, -10)\n",
+    "iteration = 0\n",
+    "\n",
+    "while True:\n",
+    "    iteration += 1\n",
+    "    if iteration > 200:\n",
+    "        print('Breaking the loop after 200 iterations')\n",
+    "        break\n",
+    "    \n",
+    "    c = bf.calculate_mean(a, b)\n",
+    "    fa, fb, fc = f1(a), f1(b), f1(c)\n",
+    "    print(f'a = {a}, b = {b}, c = {c}, f(a) = {fa}, f(b) = {fb}, f(c) = {fc}')\n",
+    "    \n",
+    "    if abs(fc) < threshold:\n",
+    "        print(f'Root found at c = {c} with f(c) = {fc}')\n",
+    "        break\n",
+    "    \n",
+    "    flag = bf.check_sign(fc, fa)\n",
+    "    a, b = bf.reassign_ab(flag, a, b, c)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Example 3 - Solving for root of 10 * log10(x)\n",
+    "def f1(x):\n",
+    "    return 10 * np.log10(x)\n",
+    "\n",
+    "a, b = bf.sort_values(0, 60)\n",
+    "iteration = 0\n",
+    "\n",
+    "while True:\n",
+    "    iteration += 1\n",
+    "    if iteration > 200:\n",
+    "        print('Breaking the loop after 200 iterations')\n",
+    "        break\n",
+    "    \n",
+    "    c = bf.calculate_mean(a, b)\n",
+    "    fa, fb, fc = f1(a), f1(b), f1(c)\n",
+    "    print(f'a = {a}, b = {b}, c = {c}, f(a) = {fa}, f(b) = {fb}, f(c) = {fc}')\n",
+    "    \n",
+    "    if abs(fc) < threshold:\n",
+    "        print(f'Root found at c = {c} with f(c) = {fc}')\n",
+    "        break\n",
+    "    \n",
+    "    flag = bf.check_sign(fc, fa)\n",
+    "    a, b = bf.reassign_ab(flag, a, b, c)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Example 4 - Solving for root of nonlinear equation involving strain\n",
+    "def f1(e):\n",
+    "    return sigma - E * (1 + alpha * e) * e\n",
+    "\n",
+    "E = 2e11\n",
+    "alpha = 0.01\n",
+    "sigma = 50000\n",
+    "a, b = bf.sort_values(7, 0)\n",
+    "iteration = 0\n",
+    "\n",
+    "while True:\n",
+    "    iteration += 1\n",
+    "    if iteration > 200:\n",
+    "        print('Breaking the loop after 200 iterations')\n",
+    "        break\n",
+    "    \n",
+    "    c = bf.calculate_mean(a, b)\n",
+    "    fa, fb, fc = f1(a), f1(b), f1(c)\n",
+    "    print(f'a = {a}, b = {b}, c = {c}, f(a) = {fa}, f(b) = {fb}, f(c) = {fc}')\n",
+    "    \n",
+    "    if abs(fc) < threshold:\n",
+    "        print(f'Root found at c = {c} with f(c) = {fc}')\n",
+    "        break\n",
+    "    \n",
+    "    flag = bf.check_sign(fc, fa)\n",
+    "    a, b = bf.reassign_ab(flag, a, b, c)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Example 5 - Solving for root of a power-law equation\n",
+    "def f1(v):\n",
+    "    return C - P * v**n\n",
+    "\n",
+    "P = 50000\n",
+    "C = 200000\n",
+    "n = 1.4\n",
+    "a, b = bf.sort_values(0, 5)\n",
+    "iteration = 0\n",
+    "\n",
+    "while True:\n",
+    "    iteration += 1\n",
+    "    if iteration > 200:\n",
+    "        print('Breaking the loop after 200 iterations')\n",
+    "        break\n",
+    "    \n",
+    "    c = bf.calculate_mean(a, b)\n",
+    "    fa, fb, fc = f1(a), f1(b), f1(c)\n",
+    "    print(f'a = {a}, b = {b}, c = {c}, f(a) = {fa}, f(b) = {fb}, f(c) = {fc}')\n",
+    "    \n",
+    "    if abs(fc) < threshold:\n",
+    "        print(f'Root found at c = {c} with f(c) = {fc}')\n",
+    "        break\n",
+    "    \n",
+    "    flag = bf.check_sign(fc, fa)\n",
+    "    a, b = bf.reassign_ab(flag, a, b, c)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "name": "python",
+   "version": "3.9.12"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
