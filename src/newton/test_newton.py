@@ -1,5 +1,5 @@
 import pytest
-from newton import newton_functions as nf
+import newton_functions as nf
 import numpy as np
 
 
