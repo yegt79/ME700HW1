@@ -1,4 +1,4 @@
-[build-system]
+a[build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
@@ -6,9 +6,9 @@ build-backend = "setuptools.build_meta"
 name = "ME700"
 version = "0.0.0"
 authors = [
-    { name = "Kote Batonisashvili", email = "kbat6359@bu.edu" },
+    { name = "YeganehTaheri", email = "yegt@bu.edu" },
 ]
-description = "Newton Method assignment 1.1"
+description = "assignment 1"
 readme = "README.md"
 requires-python = ">=3.9"
 classifiers = [
@@ -24,5 +24,3 @@ dependencies = [
 ]
 
 
-[project.urls]
-homepage = "https://github.com/K-batonisashvili/ME700/tree/main/Assignment-1-Newtons-Method"
